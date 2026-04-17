@@ -69,7 +69,9 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          # Tell it exactly where the file is
+          file: ./docker/php/Dockerfile 
+          # The context should still be root so it can copy your Laravel code
+          context: . 
           push: true
-          # This creates the image on your Docker Hub account
           tags: ${{ secrets.DOCKER_USERNAME }}/done:latest
